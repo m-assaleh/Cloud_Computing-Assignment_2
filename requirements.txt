@@ -1,0 +1,4 @@
+kolla-ansible==16.0.0
+ansible>=6,<8
+ansible-core==2.14.10
+python-openstackclient==6.3.0

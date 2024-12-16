@@ -1,0 +1,50 @@
+
+PLAY [control, compute] ********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [34.32.66.132]
+ok: [34.32.65.62]
+ok: [34.32.66.189]
+
+TASK [Install python-minimal] **************************************************
+ok: [34.32.65.62]
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+
+TASK [Install pip] *************************************************************
+ok: [34.32.65.62]
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+
+TASK [install all required apt packages] ***************************************
+ok: [34.32.66.132] => (item=python3-dev)
+ok: [34.32.66.189] => (item=python3-dev)
+ok: [34.32.65.62] => (item=python3-dev)
+ok: [34.32.66.189] => (item=python3-pip)
+ok: [34.32.66.132] => (item=python3-pip)
+ok: [34.32.65.62] => (item=python3-pip)
+ok: [34.32.66.189] => (item=libffi-dev)
+ok: [34.32.66.132] => (item=libffi-dev)
+ok: [34.32.65.62] => (item=libffi-dev)
+ok: [34.32.66.132] => (item=gcc)
+ok: [34.32.66.189] => (item=gcc)
+ok: [34.32.65.62] => (item=gcc)
+ok: [34.32.66.189] => (item=libssl-dev)
+ok: [34.32.65.62] => (item=libssl-dev)
+ok: [34.32.66.132] => (item=libssl-dev)
+
+TASK [install docker] **********************************************************
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [make sure that docker-py is not present] *********************************
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+PLAY RECAP *********************************************************************
+34.32.65.62                : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+34.32.66.132               : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+34.32.66.189               : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

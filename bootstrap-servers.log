@@ -1,0 +1,294 @@
+Bootstrapping servers : ansible-playbook -e @/home/ubuntu/Assignment-2/kolla-ansible/globals.yml  -e @./passwords.yml -e CONFIG_DIR=/home/ubuntu/Assignment-2/kolla-ansible  -e kolla_action=bootstrap-servers /home/ubuntu/kolla-env/share/kolla-ansible/ansible/kolla-host.yml  --inventory ./multinode
+
+PLAY [Gather facts for all hosts] **********************************************
+
+TASK [Group hosts to determine when using --limit] *****************************
+ok: [34.32.66.132]
+ok: [34.32.65.62]
+ok: [34.32.66.189]
+ok: [localhost]
+
+TASK [Gather facts] ************************************************************
+ok: [localhost]
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+PLAY [Gather facts for all hosts (if using --limit)] ***************************
+skipping: no hosts matched
+
+PLAY [Apply role baremetal] ****************************************************
+
+TASK [openstack.kolla.etc_hosts : Include etc-hosts.yml] ***********************
+included: /home/ubuntu/.ansible/collections/ansible_collections/openstack/kolla/roles/etc_hosts/tasks/etc-hosts.yml for 34.32.65.62, 34.32.66.132, 34.32.66.189
+
+TASK [openstack.kolla.etc_hosts : Ensure localhost in /etc/hosts] **************
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.etc_hosts : Ensure hostname does not point to 127.0.1.1 in /etc/hosts] ***
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.etc_hosts : Generate /etc/hosts for all of the nodes] ****
+changed: [34.32.66.132]
+changed: [34.32.66.189]
+changed: [34.32.65.62]
+
+TASK [openstack.kolla.etc_hosts : Check whether /etc/cloud/cloud.cfg exists] ***
+ok: [34.32.66.189]
+ok: [34.32.66.132]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.etc_hosts : Disable cloud-init manage_etc_hosts] *********
+ok: [34.32.66.189]
+ok: [34.32.66.132]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.baremetal : Ensure unprivileged users can use ping] ******
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.baremetal : Set firewall default policy] *****************
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.baremetal : Check if firewalld is installed] *************
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.baremetal : Disable firewalld] ***************************
+skipping: [34.32.65.62] => (item=firewalld) 
+skipping: [34.32.65.62]
+skipping: [34.32.66.132] => (item=firewalld) 
+skipping: [34.32.66.132]
+skipping: [34.32.66.189] => (item=firewalld) 
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.packages : Install packages] *****************************
+ok: [34.32.66.132]
+ok: [34.32.65.62]
+ok: [34.32.66.189]
+
+TASK [openstack.kolla.packages : Remove packages] ******************************
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker : include_tasks] **********************************
+included: /home/ubuntu/.ansible/collections/ansible_collections/openstack/kolla/roles/docker/tasks/repo-Debian.yml for 34.32.65.62, 34.32.66.132, 34.32.66.189
+
+TASK [openstack.kolla.docker : Install CA certificates and gnupg packages] *****
+ok: [34.32.66.189]
+ok: [34.32.66.132]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker : Ensure apt sources list directory exists] *******
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker : Ensure apt keyrings directory exists] ***********
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker : Install docker apt gpg key] *********************
+ok: [34.32.65.62]
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+
+TASK [openstack.kolla.docker : Install docker apt pin] *************************
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.docker : Enable docker apt repository] *******************
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker : Check which containers are running] *************
+ok: [34.32.66.189]
+ok: [34.32.66.132]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker : Check if docker systemd unit exists] ************
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker : Mask the docker systemd unit on Debian/Ubuntu] ***
+changed: [34.32.66.132]
+changed: [34.32.66.189]
+changed: [34.32.65.62]
+
+TASK [openstack.kolla.docker : Install packages] *******************************
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker : Start docker] ***********************************
+skipping: [34.32.65.62]
+skipping: [34.32.66.189]
+skipping: [34.32.66.132]
+
+TASK [openstack.kolla.docker : Wait for Docker to start] ***********************
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.docker : Ensure containers are running after Docker upgrade] ***
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.docker : Ensure docker config directory exists] **********
+ok: [34.32.66.189]
+ok: [34.32.66.132]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker : Write docker config] ****************************
+ok: [34.32.65.62]
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+
+TASK [openstack.kolla.docker : Remove old docker options file] *****************
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker : Ensure docker service directory exists] *********
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.docker : Configure docker service] ***********************
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.docker : Ensure the path for CA file for private registry exists] ***
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.docker : Ensure the CA file for private registry exists] ***
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.docker : Flush handlers] *********************************
+
+TASK [openstack.kolla.docker : Flush handlers] *********************************
+
+TASK [openstack.kolla.docker : Flush handlers] *********************************
+
+TASK [openstack.kolla.docker : Start and enable docker] ************************
+changed: [34.32.66.189]
+changed: [34.32.66.132]
+changed: [34.32.65.62]
+
+TASK [openstack.kolla.docker : include_tasks] **********************************
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.kolla_user : Ensure groups are present] ******************
+skipping: [34.32.65.62] => (item=docker) 
+skipping: [34.32.65.62] => (item=sudo) 
+skipping: [34.32.65.62] => (item=kolla) 
+skipping: [34.32.65.62]
+skipping: [34.32.66.132] => (item=docker) 
+skipping: [34.32.66.132] => (item=sudo) 
+skipping: [34.32.66.132] => (item=kolla) 
+skipping: [34.32.66.132]
+skipping: [34.32.66.189] => (item=docker) 
+skipping: [34.32.66.189] => (item=sudo) 
+skipping: [34.32.66.189] => (item=kolla) 
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.kolla_user : Create kolla user] **************************
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.kolla_user : Add public key to kolla user authorized keys] ***
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.kolla_user : Grant kolla user passwordless sudo] *********
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.docker_sdk : Install packages] ***************************
+ok: [34.32.66.189]
+ok: [34.32.66.132]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.docker_sdk : Install latest pip in the virtualenv] *******
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.docker_sdk : Install docker SDK for python] **************
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.baremetal : Ensure node_config_directory directory exists] ***
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.apparmor_libvirt : include_tasks] ************************
+included: /home/ubuntu/.ansible/collections/ansible_collections/openstack/kolla/roles/apparmor_libvirt/tasks/remove-profile.yml for 34.32.65.62, 34.32.66.132, 34.32.66.189
+
+TASK [openstack.kolla.apparmor_libvirt : Get stat of libvirtd apparmor profile] ***
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+ok: [34.32.65.62]
+
+TASK [openstack.kolla.apparmor_libvirt : Get stat of libvirtd apparmor disable profile] ***
+ok: [34.32.65.62]
+ok: [34.32.66.132]
+ok: [34.32.66.189]
+
+TASK [openstack.kolla.apparmor_libvirt : Remove apparmor profile for libvirt] ***
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.baremetal : Change state of selinux] *********************
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.baremetal : Set https proxy for git] *********************
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.baremetal : Set http proxy for git] **********************
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+TASK [openstack.kolla.baremetal : Configure ceph for zun] **********************
+skipping: [34.32.65.62]
+skipping: [34.32.66.132]
+skipping: [34.32.66.189]
+
+PLAY RECAP *********************************************************************
+34.32.65.62                : ok=31   changed=3    unreachable=0    failed=0    skipped=22   rescued=0    ignored=0   
+34.32.66.132               : ok=31   changed=3    unreachable=0    failed=0    skipped=22   rescued=0    ignored=0   
+34.32.66.189               : ok=31   changed=3    unreachable=0    failed=0    skipped=22   rescued=0    ignored=0   
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
